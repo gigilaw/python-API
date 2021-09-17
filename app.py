@@ -58,6 +58,37 @@ class Doctor(db.Model):
         self.hours = hours
         self.category_id = category_id
 
+    @classmethod
+    def seed(cls, fake):
+        mock_hours = [
+            "Monday: 9am-3pm, Tuesday: 9am-3pm, Wednesday: 9am-3pm, Thursday: 9am-3pm",
+            "Monday: 9am-8pm, Friday: 9am-8pm, Saturday: closed, Sunday: closed, Public Holiday: closed"
+        ]
+        doctor = Doctor(
+            first_name=fake.first_name(),
+            last_name=fake.last_name(),
+            gender=fake.random_element(elements=("F", "M")),
+            price=fake.random_int(300, 1000, 10),
+            include_medicine=fake.boolean(),
+            medicine_days=None,
+            hours=fake.random_element(elements=mock_hours),
+            category_id=fake.random_int(1, 3)
+        )
+        if doctor.include_medicine:
+            doctor.medicine_days = fake.random_int(1, 7)
+
+        save(doctor)
+        doctor.add_relationship()
+
+    def add_relationship(self):
+        clinic = Clinic.query.get(fake.random_int(1, 5))
+        self.clinics.append(clinic)
+
+        language = Language.query.get(fake.random_int(1, 3))
+        self.languages.append(language)
+
+        db.session.commit()
+
 
 class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -96,6 +127,17 @@ class Clinic(db.Model):
         self.district_id = district_id
         self.contact = contact
 
+    @classmethod
+    def seed(cls, fake):
+        clinic = Clinic(
+            name=fake.company() + " Clinic",
+            address=fake.address(),
+            district_id=fake.random_int(1, 2),
+            contact=fake.phone_number(),
+        )
+
+        save(clinic)
+
 
 class Language(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -104,6 +146,11 @@ class Language(db.Model):
 
     def __init__(self, name):
         self.name = name
+
+
+def save(self):
+    db.session.add(self)
+    db.session.commit()
 
 
 @app.route('/', methods=['GET'])
