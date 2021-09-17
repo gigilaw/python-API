@@ -5,22 +5,22 @@
 To build an API server to expose a Doctor List API for front-end
 application to present the information to customers.
 
-```
-Endpoints:
-- https://{{domain}}/docter
-- https://{{domain}}/docter/:id
-```
+| Endpoints                     | Description                                                                                    |
+| ----------------------------- | ---------------------------------------------------------------------------------------------- |
+| https://{{domain}}/docter     | To list all doctors and query docters by `district`, `category`, `price range`, and `language` |
+| https://{{domain}}/docter/:id | To get a specific doctor by `id`                                                               |
 
-###Requirement
+## Requirement
 
 ```
 - Python 3.6+
 ```
 
-### Set-Up Guide
+## Set-Up Guide
 
 ```zsh
 # Git clone project
+git clone https://github.com/gigilaw/Gigi_Law_Backend_Engineer_Technical_Assessment.git
 
 # Start virtual env
 python3 -m venv venv
