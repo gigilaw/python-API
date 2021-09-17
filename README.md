@@ -1,6 +1,13 @@
 # Necktie Backend Take-Home Assessment
 
-## Description
+## Table of Contents
+
+1. [Description](#description)
+2. [Set-up Guide](#set-up-guide)
+3. [Application Information](#application-information)
+4. [Task Answers](#task-answers)
+
+# Description
 
 To build an API server to expose a Doctor List API for front-end
 application to present the information to customers.
@@ -58,3 +65,29 @@ python3 seed.py
 # Start Flask
 flask run
 ```
+
+# Application Information
+
+### Relationship Diagram
+
+![Alt text](https://i.ibb.co/9vdszxy/task.png)
+
+### Documentation
+
+TBC
+
+# Task Answers
+
+1. Choice of Framework & Library: Please explain why you choose the particular
+   framework or library.
+   a. What are the benefits & drawbacks associated with that choice?
+   b. What are the assumptions underlying that choice?
+2. Potential Improvement: Please elaborate on what kind of improvements you
+   would like to implement if you have given more time.
+3. Production consideration: Any extra steps should be taken with caution when
+   deploying your app to a production environment?
+4. Assumptions
+   a. Any assumptions you have made when you designed the data model and
+   API schema?
+   b. Any other assumptions and opinions you have taken throughout the
+   assessments?
