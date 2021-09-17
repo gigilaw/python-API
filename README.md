@@ -72,6 +72,16 @@ flask run
 
 ![Alt text](https://i.ibb.co/9vdszxy/task.png)
 
+### Database migration
+
+```zsh
+# Update migration version
+flask db migrate
+
+# Run migration
+flask db upgrade
+```
+
 ### Documentation
 
 TBC
