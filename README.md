@@ -16,7 +16,9 @@ application to present the information to customers.
 - Python 3.6+
 ```
 
-## Set-Up Guide
+# Set-Up Guide
+
+## Project Setup
 
 ```zsh
 # Git clone project
@@ -36,8 +38,23 @@ export FLASK_APP=app
 
 # Turn on debugger for development environment
 export FLASK_ENV=development
+```
 
+## Database Setup
+
+```python
+# Create sqlite DB
+python3
+from app import db
+db.create_all()
+
+# Seed db with starting data
+python3 seed.py
+```
+
+## Start application
+
+```zsh
 # Start Flask
 flask run
-
 ```
