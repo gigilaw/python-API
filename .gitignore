@@ -1,0 +1,4 @@
+# Virual env folder
+venv
+
+__pycache__
