@@ -14,8 +14,8 @@ application to present the information to customers.
 
 | Endpoints                     | Description                                                                                    |
 | ----------------------------- | ---------------------------------------------------------------------------------------------- |
-| https://{{domain}}/docter     | To list all doctors and query docters by `district`, `category`, `price range`, and `language` |
-| https://{{domain}}/docter/:id | To get a specific doctor by `id`                                                               |
+| https://{{domain}}/doctor     | To list all doctors and query docters by `district`, `category`, `price range`, and `language` |
+| https://{{domain}}/doctor/:id | To get a specific doctor by `id`                                                               |
 
 ## Requirement
 
