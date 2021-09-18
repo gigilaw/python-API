@@ -177,11 +177,6 @@ doctor_schema = DoctorSchema()
 doctors_schema = DoctorSchema(many=True)
 
 
-def save(self):
-    db.session.add(self)
-    db.session.commit()
-
-
 @app.route('/', methods=['GET'])
 def index():
     return jsonify({"status": "working"})
@@ -192,9 +187,35 @@ def doctor():
     if(request.method == 'GET'):
         all_doctors = Doctor.query.all()
         result = doctors_schema.dump(all_doctors)
-        print(doctors_schema.validate(all_doctors))
+        return jsonify(result)
 
-    return jsonify(result)
+    new_doctor = add_doctor()
+    return doctor_schema.jsonify(new_doctor)
+
+
+def add_doctor():
+    first_name = request.json['firstName']
+    last_name = request.json['lastName']
+    gender = request.json['gender']
+    category_id = request.json['categoryId']
+    clinic_id = request.json['clinicId']
+    languages = request.json['languages']
+
+    doctor = Doctor(first_name, last_name, gender, category_id, clinic_id)
+
+    save(doctor)
+
+    for languageId in languages:
+        language = Language.query.get(languageId)
+        doctor.languages.append(language)
+        db.session.commit()
+
+    return doctor
+
+
+def save(self):
+    db.session.add(self)
+    db.session.commit()
 
 
 if __name__ == '__main__':
