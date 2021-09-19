@@ -8,6 +8,7 @@
     - [Database Relationship Diagram](#relationship-diagram)
     - [Database Migration Commands](#database-migration)
     - [API Documentation](#documentation)
+    - [Application Testing](#application-testing)
 4. [Task Answers](#task-answers)
 
 # Description
@@ -20,10 +21,10 @@ application to present the information to customers.
 | https://{{domain}}/doctor     | To list all doctors and query doctors by `district`, `category`, `price range`, and `language` |
 | https://{{domain}}/doctor/:id | To get a specific doctor by `id`                                                               |
 
-## Requirement
+## Python Version
 
 ```
-- Python 3.6+
+Python 3.9.7
 ```
 
 # Set-Up Guide
@@ -225,6 +226,13 @@ POST /doctor
     "first_name": "333",
     "last_name": "def"
 }
+```
+
+## Application Testing
+
+```zsh
+# Run tests
+python3 test.py
 ```
 
 # Task Answers

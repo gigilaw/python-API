@@ -1,0 +1,8 @@
+{
+    "firstName": "Testing Doctor",
+    "lastName": "Mock",
+    "gender": "F",
+    "categoryId": 1,
+    "clinicId": 5,
+    "languages": [1,2]
+}

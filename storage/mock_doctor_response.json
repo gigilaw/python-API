@@ -1,0 +1,21 @@
+{
+    "category": {
+        "id": 1,
+        "name": "General Practitioner"
+    },
+    "clinic": {
+        "address": "3752 Vega Square\nTimothyport, NM 80530",
+        "contact": "581-201-2681x011",
+        "district": {
+            "id": 1,
+            "name": "Wan Chai"
+        },
+        "hours": "Monday: 9am-3pm, Tuesday: 9am-3pm, Wednesday: 9am-3pm, Thursday: 9am-3pm",
+        "include_medications": true,
+        "medication_days": 5,
+        "name": "Klein Inc Clinic",
+        "price": 840
+    },
+    "first_name": "Testing Doctor",
+    "last_name": "Mock"
+}

@@ -5,10 +5,14 @@ from faker import Faker
 from datetime import datetime
 from flask_marshmallow import Marshmallow
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///" + \
+    os.getenv('SQLITE_NAME')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -168,7 +172,7 @@ class DoctorSchema(ma.Schema):
     category = ma.Nested(CategorySchema)
 
     class Meta:
-        fields = ('category', 'clinic', 'first_name', 'last_name')
+        fields = ('category', 'clinic', 'first_name', 'last_name', 'id')
 
 
 doctor_schema = DoctorSchema()
