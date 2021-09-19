@@ -4,9 +4,7 @@ from flask_migrate import Migrate
 from faker import Faker
 from datetime import datetime
 from flask_marshmallow import Marshmallow
-from marshmallow import fields
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
-from marshmallow import Schema, fields
 
 app = Flask(__name__)
 
@@ -185,12 +183,48 @@ def index():
 @app.route('/doctor', methods=['GET', 'POST'])
 def doctor():
     if(request.method == 'GET'):
-        all_doctors = Doctor.query.all()
+        if not request.query_string:
+            all_doctors = Doctor.query.all()
+        else:
+            query = doctor_query_builder()
+            all_doctors = query.all()
+
         result = doctors_schema.dump(all_doctors)
         return jsonify(result)
 
     new_doctor = add_doctor()
     return doctor_schema.jsonify(new_doctor)
+
+
+@app.route('/doctor/<id>', methods=['GET'])
+def get_doctor(id):
+    doctor = Doctor.query.get(id)
+    return doctor_schema.jsonify(doctor)
+
+
+def doctor_query_builder():
+    district_id = request.args.get('districtId')
+    category_id = request.args.get('categoryId')
+    language_id = request.args.get('languageId')
+    greater_than = request.args.get('gt')
+    less_than = request.args.get('lt')
+
+    query = Doctor.query.join(Clinic)
+    if category_id:
+        query = query.filter(Doctor.category_id == category_id)
+
+    if language_id:
+        query = query.filter(Doctor.languages.any(id=language_id))
+
+    if district_id:
+        query = query.filter(
+            Clinic.district_id == district_id)
+
+    if less_than and greater_than:
+        query = query.filter(
+            Clinic.price >= greater_than, Clinic.price <= less_than)
+
+    return query
 
 
 def add_doctor():
