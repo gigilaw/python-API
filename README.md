@@ -5,6 +5,9 @@
 1. [Description](#description)
 2. [Set-up Guide](#set-up-guide)
 3. [Application Information](#application-information)
+    - [Database Relationship Diagram](#relationship-diagram)
+    - [Database Migration Commands](#database-migration)
+    - [API Documentation](#documentation)
 4. [Task Answers](#task-answers)
 
 # Description
@@ -68,11 +71,11 @@ flask run
 
 # Application Information
 
-### Relationship Diagram
+## Relationship Diagram
 
-![Alt text](https://i.ibb.co/9vdszxy/task.png)
+![Alt text](./storage/db.png)
 
-### Database migration
+## Database migration
 
 ```zsh
 # Update migration version
@@ -82,9 +85,147 @@ flask db migrate
 flask db upgrade
 ```
 
-### Documentation
+## Documentation
 
-TBC
+### GET /doctor
+
+```http
+GET /doctor
+```
+
+| Query Parameters | Description                                      |
+| :--------------- | :----------------------------------------------- |
+| `categoryId`     | **optional**.                                    |
+| `districtId`     | **optional**.                                    |
+| `languageId`     | **optional**.                                    |
+| `gt`             | **Requried for price_range query**. Greater than |
+| `lt`             | **Requried for price_range query**. Less than    |
+
+### Sample Success Response
+
+```javascript
+;[
+	{
+		category: {
+			id: 3,
+			name: 'Cardiologist',
+		},
+		clinic: {
+			address: '48290 Ross Corners Apt. 605\nChristopherberg, MT 71616',
+			contact: '761-697-4127x9538',
+			district: {
+				id: 1,
+				name: 'Wan Chai',
+			},
+			hours: 'Monday: 9am-8pm, Friday: 9am-8pm, Saturday: closed, Sunday: closed, Public Holiday: closed',
+			include_medications: false,
+			medication_days: null,
+			name: 'Moon Ltd Clinic',
+			price: 430,
+		},
+		first_name: 'Luis',
+		last_name: 'Medina',
+	},
+	{
+		category: {
+			id: 3,
+			name: 'Cardiologist',
+		},
+		clinic: {
+			address: 'Unit 5772 Box 0035\nDPO AP 77801',
+			contact: '0807345494',
+			district: {
+				id: 1,
+				name: 'Wan Chai',
+			},
+			hours: 'Monday: 9am-8pm, Friday: 9am-8pm, Saturday: closed, Sunday: closed, Public Holiday: closed',
+			include_medications: false,
+			medication_days: null,
+			name: 'Moreno, Hernandez and Beard Clinic',
+			price: 450,
+		},
+		first_name: 'Brandon',
+		last_name: 'Schneider',
+	},
+]
+```
+
+### GET /doctor/:id
+
+```http
+GET /doctor/:id
+```
+
+| Query Parameter | Type      | Description                |
+| :-------------- | :-------- | :------------------------- |
+| `id`            | `integer` | **Required**. Id of doctor |
+
+### Sample Success Response
+
+```javascript
+{
+    "category": {
+        "id": 1,
+        "name": "General Practitioner"
+    },
+    "clinic": {
+        "address": "3752 Vega Square\nTimothyport, NM 80530",
+        "contact": "581-201-2681x011",
+        "district": {
+            "id": 1,
+            "name": "Wan Chai"
+        },
+        "hours": "Monday: 9am-3pm, Tuesday: 9am-3pm, Wednesday: 9am-3pm, Thursday: 9am-3pm",
+        "include_medications": true,
+        "medication_days": 5,
+        "name": "Klein Inc Clinic",
+        "price": 840
+    },
+    "first_name": "Andy",
+    "last_name": "April"
+}
+```
+
+### POST /doctor
+
+```http
+POST /doctor
+```
+
+| Parameters   | Type      | Description             |
+| :----------- | :-------- | :---------------------- |
+| `firstName`  | `string`  | **Required**.           |
+| `lastName`   | `string`  | **Required**.           |
+| `gender`     | `string`  | **Required**.           |
+| `categoryId` | `integer` | **Required**.           |
+| `clinicId`   | `integer` | **Required**.           |
+| `languages`  | `array`   | **Required**. Ex. [1,2] |
+
+### Sample Success Response
+
+```javascript
+{
+    "category": {
+        "id": 1,
+        "name": "General Practitioner"
+    },
+    "clinic": {
+        "address": "230 Regina Plaza Apt. 591\nScottberg, WA 83789",
+        "contact": "893.679.6237",
+        "district": {
+            "id": 1,
+            "name": "Wan Chai"
+        },
+        "hours": "Monday: 9am-8pm, Friday: 9am-8pm, Saturday: closed, Sunday: closed, Public Holiday: closed",
+        "include_medications": false,
+        "medication_days": null,
+        "name": "Lowe and Sons Clinic",
+        "price": 940
+    },
+    "first_name": "333",
+    "last_name": "def"
+}
+```
 
 # Task Answers
 
