@@ -119,6 +119,7 @@ GET /doctor
 				"name": "Wan Chai"
 			},
 			"hours": "Monday: 9am-8pm, Friday: 9am-8pm, Saturday: closed, Sunday: closed, Public Holiday: closed",
+			"id": 1,
 			"include_medications": false,
 			"medication_days": null,
 			"name": "Moon Ltd Clinic",
@@ -141,6 +142,7 @@ GET /doctor
 				"name": "Wan Chai"
 			},
 			"hours": "Monday: 9am-8pm, Friday: 9am-8pm, Saturday: closed, Sunday: closed, Public Holiday: closed",
+			"id": 2,
 			"include_medications": false,
 			"medication_days": null,
 			"name": "Moreno, Hernandez and Beard Clinic",
@@ -179,6 +181,7 @@ GET /doctor/:id
 			"name": "Wan Chai"
 		},
 		"hours": "Monday: 9am-3pm, Tuesday: 9am-3pm, Wednesday: 9am-3pm, Thursday: 9am-3pm",
+		"id": 1,
 		"include_medications": true,
 		"medication_days": 5,
 		"name": "Klein Inc Clinic",
@@ -221,6 +224,7 @@ POST /doctor
 			"name": "Wan Chai"
 		},
 		"hours": "Monday: 9am-8pm, Friday: 9am-8pm, Saturday: closed, Sunday: closed, Public Holiday: closed",
+		"id": 2,
 		"include_medications": false,
 		"medication_days": null,
 		"name": "Lowe and Sons Clinic",

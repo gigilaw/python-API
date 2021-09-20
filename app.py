@@ -158,12 +158,10 @@ class ClinicSchema(SQLAlchemyAutoSchema):
 
     class Meta:
         model = Clinic
-        exclude = ('created_at', 'id')
 
 
-class CategorySchema(SQLAlchemyAutoSchema):
+class CategorySchema(ma.Schema):
     class Meta:
-        model = Category
         fields = ('id', 'name')
 
 
