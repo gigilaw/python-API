@@ -8,6 +8,7 @@
     - [Database Relationship Diagram](#relationship-diagram)
     - [Database Migration Commands](#database-migration)
     - [API Documentation](#documentation)
+    - [Application Testing](#application-testing)
 4. [Task Answers](#task-answers)
 
 # Description
@@ -20,10 +21,10 @@ application to present the information to customers.
 | https://{{domain}}/doctor     | To list all doctors and query doctors by `district`, `category`, `price range`, and `language` |
 | https://{{domain}}/doctor/:id | To get a specific doctor by `id`                                                               |
 
-## Requirement
+## Python Version
 
 ```
-- Python 3.6+
+Python 3.9.7
 ```
 
 # Set-Up Guide
@@ -103,50 +104,54 @@ GET /doctor
 
 ### Sample Success Response
 
-```javascript
-;[
+```json
+[
 	{
-		category: {
-			id: 3,
-			name: 'Cardiologist',
+		"category": {
+			"id": 3,
+			"name": "Cardiologist"
 		},
-		clinic: {
-			address: '48290 Ross Corners Apt. 605\nChristopherberg, MT 71616',
-			contact: '761-697-4127x9538',
-			district: {
-				id: 1,
-				name: 'Wan Chai',
+		"clinic": {
+			"address": "48290 Ross Corners Apt. 605\nChristopherberg, MT 71616",
+			"contact": "761-697-4127x9538",
+			"district": {
+				"id": 1,
+				"name": "Wan Chai"
 			},
-			hours: 'Monday: 9am-8pm, Friday: 9am-8pm, Saturday: closed, Sunday: closed, Public Holiday: closed',
-			include_medications: false,
-			medication_days: null,
-			name: 'Moon Ltd Clinic',
-			price: 430,
+			"hours": "Monday: 9am-8pm, Friday: 9am-8pm, Saturday: closed, Sunday: closed, Public Holiday: closed",
+			"id": 1,
+			"include_medications": false,
+			"medication_days": null,
+			"name": "Moon Ltd Clinic",
+			"price": 430
 		},
-		first_name: 'Luis',
-		last_name: 'Medina',
+		"first_name": "Luis",
+		"last_name": "Medina",
+		"id": 1
 	},
 	{
-		category: {
-			id: 3,
-			name: 'Cardiologist',
+		"category": {
+			"id": 3,
+			"name": "Cardiologist"
 		},
-		clinic: {
-			address: 'Unit 5772 Box 0035\nDPO AP 77801',
-			contact: '0807345494',
-			district: {
-				id: 1,
-				name: 'Wan Chai',
+		"clinic": {
+			"address": "Unit 5772 Box 0035\nDPO AP 77801",
+			"contact": "0807345494",
+			"district": {
+				"id": 1,
+				"name": "Wan Chai"
 			},
-			hours: 'Monday: 9am-8pm, Friday: 9am-8pm, Saturday: closed, Sunday: closed, Public Holiday: closed',
-			include_medications: false,
-			medication_days: null,
-			name: 'Moreno, Hernandez and Beard Clinic',
-			price: 450,
+			"hours": "Monday: 9am-8pm, Friday: 9am-8pm, Saturday: closed, Sunday: closed, Public Holiday: closed",
+			"id": 2,
+			"include_medications": false,
+			"medication_days": null,
+			"name": "Moreno, Hernandez and Beard Clinic",
+			"price": 450
 		},
-		first_name: 'Brandon',
-		last_name: 'Schneider',
-	},
+		"first_name": "Brandon",
+		"last_name": "Schneider",
+		"id": 2
+	}
 ]
 ```
 
@@ -162,27 +167,29 @@ GET /doctor/:id
 
 ### Sample Success Response
 
-```javascript
+```json
 {
-    "category": {
-        "id": 1,
-        "name": "General Practitioner"
-    },
-    "clinic": {
-        "address": "3752 Vega Square\nTimothyport, NM 80530",
-        "contact": "581-201-2681x011",
-        "district": {
-            "id": 1,
-            "name": "Wan Chai"
-        },
-        "hours": "Monday: 9am-3pm, Tuesday: 9am-3pm, Wednesday: 9am-3pm, Thursday: 9am-3pm",
-        "include_medications": true,
-        "medication_days": 5,
-        "name": "Klein Inc Clinic",
-        "price": 840
-    },
-    "first_name": "Andy",
-    "last_name": "April"
+	"category": {
+		"id": 1,
+		"name": "General Practitioner"
+	},
+	"clinic": {
+		"address": "3752 Vega Square\nTimothyport, NM 80530",
+		"contact": "581-201-2681x011",
+		"district": {
+			"id": 1,
+			"name": "Wan Chai"
+		},
+		"hours": "Monday: 9am-3pm, Tuesday: 9am-3pm, Wednesday: 9am-3pm, Thursday: 9am-3pm",
+		"id": 1,
+		"include_medications": true,
+		"medication_days": 5,
+		"name": "Klein Inc Clinic",
+		"price": 840
+	},
+	"first_name": "Andy",
+	"last_name": "April",
+	"id": 1
 }
 ```
 
@@ -203,28 +210,37 @@ POST /doctor
 
 ### Sample Success Response
 
-```javascript
+```json
 {
-    "category": {
-        "id": 1,
-        "name": "General Practitioner"
-    },
-    "clinic": {
-        "address": "230 Regina Plaza Apt. 591\nScottberg, WA 83789",
-        "contact": "893.679.6237",
-        "district": {
-            "id": 1,
-            "name": "Wan Chai"
-        },
-        "hours": "Monday: 9am-8pm, Friday: 9am-8pm, Saturday: closed, Sunday: closed, Public Holiday: closed",
-        "include_medications": false,
-        "medication_days": null,
-        "name": "Lowe and Sons Clinic",
-        "price": 940
-    },
-    "first_name": "333",
-    "last_name": "def"
+	"category": {
+		"id": 1,
+		"name": "General Practitioner"
+	},
+	"clinic": {
+		"address": "230 Regina Plaza Apt. 591\nScottberg, WA 83789",
+		"contact": "893.679.6237",
+		"district": {
+			"id": 1,
+			"name": "Wan Chai"
+		},
+		"hours": "Monday: 9am-8pm, Friday: 9am-8pm, Saturday: closed, Sunday: closed, Public Holiday: closed",
+		"id": 2,
+		"include_medications": false,
+		"medication_days": null,
+		"name": "Lowe and Sons Clinic",
+		"price": 940
+	},
+	"first_name": "333",
+	"last_name": "def",
+	"id": 1
 }
+```
+
+## Application Testing
+
+```zsh
+# Run tests
+python3 test.py
 ```
 
 # Task Answers
