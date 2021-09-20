@@ -44,6 +44,10 @@ python3 -m venv venv
 # Install required framework and libraries
 pip3 install -r requirements.txt
 
+# Create .env file based on .env.example
+cat .env.example | pbcopy
+pbpaste > .env
+
 # Set environment variables
 export FLASK_APP=app
 
@@ -247,14 +251,48 @@ python3 test.py
 
 1. Choice of Framework & Library: Please explain why you choose the particular
    framework or library.
-   a. What are the benefits & drawbacks associated with that choice?
-   b. What are the assumptions underlying that choice?
+
+    - What are the benefits & drawbacks associated with that choice?
+    - What are the assumptions underlying that choice?
+
+    ```
+    After researching for some potential frameworks, I chose to use Flask framework for its lightweight, ease to use, and vast resources through the community that has built it. I made the assumption that only 2 endpoints will be consumed and thus I wanted to pick a micro-framework to deliver fast performance. As someone who is not too familiar with python, a framework having a lot of support, documentation, and questions raised was a huge advantage for me as I was able to draw from all those who has come before, and use their knowledge and experiences as my guidance to complete this project. One of the main drawbacks would be not being standardized. Due to the nature of the framework not being very opinionated, so it makes it hard to adjust for developers and will have to take extra time to research on what would be the best for implementations.
+
+    I didn’t install too many extra libraries apart from the ones to start with Flask. However, to complete the task, I installed some Flask extensions that will help with maneuvering the database (Flask-SQLAlchemy), present the data in schema (Flask-Marshmallow), run migrations (Flask-Migrate), run tests through requests (Requests), and load .env files (python-dotenv). I mainly chose the above libraries for its ease of integration with Flask itself.
+    ```
+
 2. Potential Improvement: Please elaborate on what kind of improvements you
    would like to implement if you have given more time.
+
+    ```
+    If I were given more time, I would like to implement the following:
+
+    1. Folder structure
+         - Since the application is not too big, I did not implement a specific structure for it. But reading through the Flask Documentations, as this application grows, I would like to implement Blueprints concept for better structuring and readability
+
+    2. Health check of the application
+
+    3. Performance metrics
+
+    4. Pagination
+
+    5. Validation of the request passed
+
+    6. Custom exceptions
+    ```
+
 3. Production consideration: Any extra steps should be taken with caution when
    deploying your app to a production environment?
+
+    ```
+    It is important to make sure there are no production variables are in the .env.example file. I kept the values in there for ease of creating the .env file but in the production environment, it should be taken out. It is also important to separate development and production databases and not mistakenly run migration on the production database.
+    ```
+
 4. Assumptions
-   a. Any assumptions you have made when you designed the data model and
-   API schema?
-   b. Any other assumptions and opinions you have taken throughout the
-   assessments?
+    - Any assumptions you have made when you designed the data model and
+      API schema?
+    - Any other assumptions and opinions you have taken throughout the
+      assessments?
+    ```
+    An assumption I made when designing the data model was that both Doctor and Clinic and Doctor and Category have a one-to-one relationship. The case in reality was not as clear cut as a Doctor and Language many-to-many relationship and so for ease of building the model, I had to make this assumption. I had also assumed that the request will be passed by json.
+    ```
