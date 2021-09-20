@@ -45,7 +45,7 @@ python3 -m venv venv
 pip3 install -r requirements.txt
 
 # Create .env file based on .env.example
-cat .env.example | pbcopy
+pbcopy < .env.example
 pbpaste > .env
 
 # Set environment variables
@@ -244,7 +244,7 @@ POST /doctor
 
 ```zsh
 # Run tests
-python3 test.py
+python3 test_api.py
 ```
 
 # Task Answers
